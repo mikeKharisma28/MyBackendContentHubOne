@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using MyBackendContentHubOne.Models;
+using MyBackendContentHubOne.Services;
 
 namespace MyBackendContentHubOne.Controllers
 {
@@ -15,16 +16,16 @@ namespace MyBackendContentHubOne.Controllers
             _logger = logger;
         }
 
-        [HttpGet(Name = "GetAllTyres")]
-        public IEnumerable<Tyres> GetTyres()
-        {
+        //[HttpGet(Name = "GetAllTyres")]
+        //public IEnumerable<Tyres> GetTyres()
+        //{
             
-        }
+        //}
 
         [HttpGet(Name = "GetTyreWidths")]
-        public IEnumerable<TyreWidths> GetTyreWidths()
+        public void GetTyreWidths()
         {
-
+            
         }
     }
 }

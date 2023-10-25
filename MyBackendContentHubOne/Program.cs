@@ -1,4 +1,4 @@
-namespace MyBackendContentHubOne.Models
+namespace MyBackendContentHubOne
 {
     public class Program
     {
