@@ -1,6 +1,19 @@
 ﻿namespace MyBackendContentHubOne.Models
 {
-    public class Tyres
+    public class TyreData
+    {
+        public TyreList? data { get; set; }
+    }
+
+    public class TyreList
+    {
+        public int total { get; set; }
+
+        public List<Tyre> results { get; set; }
+
+    }
+
+    public class Tyre
     {
         public string id { get; set; }
 
@@ -16,6 +29,8 @@
 
         public decimal rimSize { get; set; }
 
+        public MediaResults logo { get; set; }
 
+        public MediaResults tyreImage { get; set; }
     }
 }

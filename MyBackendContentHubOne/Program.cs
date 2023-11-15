@@ -22,6 +22,10 @@ namespace MyBackendContentHubOne
                 app.UseSwaggerUI();
             }
 
+            // For testing only. In order to run swagger UI for production environment.
+            //app.UseSwagger();
+            //app.UseSwaggerUI();
+
             app.UseHttpsRedirection();
 
             app.UseAuthorization();

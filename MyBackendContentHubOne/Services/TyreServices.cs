@@ -1,47 +1,45 @@
-﻿using MyBackendContentHubOne.Models;
-using System.Net.Http;
-using GraphQL.Client;
-using GraphQL.Client.Http;
+﻿using GraphQL.Client.Http;
 using GraphQL.Client.Serializer.Newtonsoft;
 using GraphQL;
 using MyBackendContentHubOne.GraphQL;
+using MyBackendContentHubOne.Models;
 
 namespace MyBackendContentHubOne.Services
 {
-    public interface ITyreWidthServices
+    public interface ITyreServices
     {
-        public Task<IEnumerable<TyreWidth>> GetTyreWidthsAsync();
+        public Task<IEnumerable<Tyre>> GetAllTyresAsync();
     }
 
-    public class TyreWidthServices : ITyreWidthServices
+    public class TyreServices : ITyreServices
     {
         private readonly IConfiguration _configuration;
 
-        public TyreWidthServices(IConfiguration configuration) 
-        { 
+        public TyreServices(IConfiguration configuration)
+        {
             _configuration = configuration;
         }
 
-        public async Task<IEnumerable<TyreWidth>> GetTyreWidthsAsync() 
+        public async Task<IEnumerable<Tyre>> GetAllTyresAsync()
         {
             var sitecoreSettings = _configuration.GetSection("SitecoreSettings");
             var graphQlEndpoint = sitecoreSettings["SitecoreEndpointUrl"];
             var client = new GraphQLHttpClient(graphQlEndpoint, new NewtonsoftJsonSerializer());
             var query = new GraphQLRequest
             {
-                Query = TyreQueries.AllTyreWidths
+                Query = TyreQueries.AllTyres
             };
 
             client.HttpClient.DefaultRequestHeaders.Add("X-GQL-Token", sitecoreSettings["SitecoreDevAuthToken"]);
 
-            var response = await client.SendQueryAsync<TyreWidthData>(query);
+            var response = await client.SendQueryAsync<TyreData>(query);
             if (response.Data.data != null)
             {
                 return response.Data.data.results;
             }
             else
             {
-                return Enumerable.Empty<TyreWidth>();
+                return Enumerable.Empty<Tyre>();
             }
         }
     }
